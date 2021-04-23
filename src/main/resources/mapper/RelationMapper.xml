@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.health.dao.RelationMapper">
+
+    <select id="getRelationByCode" resultType="com.tencent.health.domain.Relation" parameterType="int">
+        select * from relation where ccode=#{code}
+    </select>
+    <insert id="insertRelation" parameterType="com.tencent.health.domain.Relation">
+        insert into relation value(#{ccode},#{icode})
+    </insert>
+    <delete id="deleteRelation" parameterType="com.tencent.health.domain.Relation">
+        delete from relation where ccode=#{ccode} and icode=#{icode}
+    </delete>
+
+
+
+</mapper>

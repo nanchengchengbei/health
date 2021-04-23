@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.health.dao.ItemsCombinationMapper">
+    <resultMap id="item" type="com.tencent.health.domain.ItemsCombination">
+        <id property="code" column="ccode"/>
+        <result property="name" column="cname"/>
+        <result property="easyName" column="ceasyname"/>
+        <result property="gender" column="cgender"/>
+        <result property="ageDown" column="cagedown"/>
+        <result property="ageUp" column="cageup"/>
+        <result property="value" column="cvalue"/>
+        <result property="cost" column="ccost"/>
+        <result property="explain" column="cexplain"/>
+        <result property="attention" column="cattention"/>
+    </resultMap>
+    <parameterMap id="pitem" type="com.tencent.health.domain.ItemsCombination">
+        <parameter property="code" resultMap="ccode"/>
+        <parameter property="name" resultMap="cname"/>
+        <parameter property="easyName" resultMap="ceasyname"/>
+        <parameter property="gender" resultMap="cgender"/>
+        <parameter property="ageDown" resultMap="cagedown"/>
+        <parameter property="ageUp" resultMap="cageup"/>
+        <parameter property="value" resultMap="cvalue"/>
+        <parameter property="cost" resultMap="ccost"/>
+        <parameter property="explain" resultMap="cexplain"/>
+        <parameter property="attention" resultMap="cattention"/>
+    </parameterMap>
+    <select id="getItemsCombination" resultMap="item">
+        select * from itemscombination
+    </select>
+    <select id="getItemsCombinationByCode" resultMap="item" parameterType="int">
+        select * from itemscombination
+    </select>
+    <insert id="insertItemsCombination" parameterMap="pitem">
+        insert into itemscombination value(#{code},#{name},#{easyName},#{gender},#{ageDown},#{ageUp},#{value},#{cost},#{explain},#{attention})
+    </insert>
+    <delete id="deleteItemsCombinationByCode" parameterType="int">
+        delete from itemscombination where ccode=#{code}
+    </delete>
+    <update id="updateItemsCombination" parameterMap="pitem">
+        update itemscombination set cname=#{name},ceasyname=#{easyName},cgender=#{gender},cagedown=#{ageDown},cageup=#{ageUp},cvalue=#{value},ccost=#{cost},cexplain=#{explain},cattention=#{attention} where ccode=#{code}
+    </update>
+</mapper>

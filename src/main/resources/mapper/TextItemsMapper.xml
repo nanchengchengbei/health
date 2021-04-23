@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.health.dao.TextItemsMapper">
+    <resultMap id="text" type="com.tencent.health.domain.TextItems">
+        <id property="code" column="icode"/>
+        <result property="name" column="iname"/>
+        <result property="easyName" column="ieasyName"/>
+        <result property="gender" column="igender"/>
+        <result property="classification" column="iclassification"/>
+        <result property="type" column="itype"/>
+        <result property="value" column="ivalue"/>
+        <result property="cost" column="icost"/>
+        <result property="explain" column="iexplain"/>
+        <result property="attention" column="iattention"/>
+    </resultMap>
+    <parameterMap id="ptext" type="com.tencent.health.domain.TextItems">
+        <parameter property="code" resultMap="icode"/>
+        <parameter property="name" resultMap="iname"/>
+        <parameter property="easyName" resultMap="ieasyName"/>
+        <parameter property="gender" resultMap="igender"/>
+        <parameter property="classification" resultMap="iclassification"/>
+        <parameter property="type" resultMap="itype"/>
+        <parameter property="value" resultMap="ivalue"/>
+        <parameter property="cost" resultMap="icost"/>
+        <parameter property="explain" resultMap="iexplain"/>
+        <parameter property="attention" resultMap="iattention"/>
+    </parameterMap>
+    <select id="getTextItems" resultMap="text">
+        select * from testitems
+    </select>
+    <select id="selectTextItemsByCode" resultMap="text" parameterType="int">
+        select * from testitems where icode=#{code}
+    </select>
+    <insert id="insertTextItems" parameterMap="ptext">
+        insert into testitems value(#{code},#{name},#{easyName},#{gender},#{classification},#{type},#{value},#{cost},#{explain},#{attention})
+    </insert>
+    <delete id="deleteTextItems" parameterType="int">
+        delete from testitems where icode=#{code}
+    </delete>
+    <update id="updateTextItems" parameterMap="ptext" >
+        update testItems set iname=#{name},ieasyName=#{easyName},igender=#{gender},iclassification=#{classification},itype=#{type},ivalue=#{value},icost=#{cost},iexplain=#{explain},iattention=#{attention} where icode=#{code}
+    </update>
+
+</mapper>
